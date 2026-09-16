@@ -18,6 +18,7 @@ jobs:
           python --version
           where msbuild || echo MSBUILD_NOT_IN_PATH
           where cl || echo CL_NOT_IN_PATH
+          exit /b 0
       - name: Build Node x64
         shell: cmd
         run: vcbuild.bat x64 openssl-no-asm nonpm nocorepack no-cctest
