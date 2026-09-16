@@ -30,6 +30,7 @@
         'OPENSSLDIR="C:\\\\Program\\ Files\\\\Common\\ Files\\\\SSL"',
         'ENGINESDIR="NUL"',
         'OPENSSL_SYS_WIN32', 'WIN32_LEAN_AND_MEAN', 'L_ENDIAN',
+        'USE_BCRYPTGENRANDOM',
         '_CRT_SECURE_NO_DEPRECATE', 'UNICODE', '_UNICODE',
       ],
       'cflags': [
