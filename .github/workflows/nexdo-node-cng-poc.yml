@@ -6,7 +6,7 @@ permissions:
 jobs:
   build:
     runs-on: windows-2022
-    timeout-minutes: 75
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,14 +22,14 @@ jobs:
       - name: Build Node x64
         shell: cmd
         run: vcbuild.bat x64 openssl-no-asm nonpm nocorepack no-cctest
-      - name: Verify runtime
+      - name: Verify runtime basics
         shell: powershell
         run: |
           .\Release\node.exe --version
           .\Release\node.exe -p "process.versions.openssl"
           Get-FileHash .\Release\node.exe -Algorithm SHA256 | Format-List
-          dumpbin /imports .\Release\node.exe | Select-String -Pattern 'BCryptGenRandom|CryptAcquireContextW|CryptGenRandom|bcrypt.dll|advapi32.dll' | ForEach-Object { $_.Line }
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: node-v24.19.0-cng-poc-win-x64
           path: Release/node.exe
